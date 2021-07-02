@@ -52,9 +52,9 @@ namespace apiNet.Controllers
                 return BadRequest("La casa de Hogwarts ingresada es incorrecta");
             }
 
-                if (id != solicitudesHogwarts.Identificación)
+                if (id != solicitudesHogwarts.IdSolicitud)
             {
-                return BadRequest("La identificación no es correcta");
+                return BadRequest("El numero de la solicitud no es correcta");
             }
 
             _context.Entry(solicitudesHogwarts).State = EntityState.Modified;

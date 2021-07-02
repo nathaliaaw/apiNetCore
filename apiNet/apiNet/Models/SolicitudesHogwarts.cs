@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,6 +12,8 @@ namespace apiNet.Models
     public class SolicitudesHogwarts
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long IdSolicitud { get; set; }
         [Required]
         [Range(1, 9999999999)]
         public long Identificación { get; set; }
