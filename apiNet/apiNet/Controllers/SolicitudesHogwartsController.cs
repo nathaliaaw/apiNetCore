@@ -29,7 +29,7 @@ namespace apiNet.Controllers
 
         // GET: api/SolicitudesHogwarts/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<SolicitudesHogwarts>> GetSolicitudesHogwarts(int id)
+        public async Task<ActionResult<SolicitudesHogwarts>> GetSolicitudesHogwarts(long id)
         {
             var solicitudesHogwarts = await _context.SolicitudesHogwarts.FindAsync(id);
 
@@ -45,14 +45,14 @@ namespace apiNet.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSolicitudesHogwarts(int id, SolicitudesHogwarts solicitudesHogwarts)
+        public async Task<IActionResult> PutSolicitudesHogwarts(long id, SolicitudesHogwarts solicitudesHogwarts)
         {
             if (!NombreCorrectoCasa(solicitudesHogwarts.CasaHogwarts))
             {
                 return BadRequest("La casa de Hogwarts ingresada es incorrecta");
             }
 
-                if (id != solicitudesHogwarts.IdSolicitud)
+            if (id != solicitudesHogwarts.IdSolicitud)
             {
                 return BadRequest("El numero de la solicitud no es correcta");
             }
@@ -84,7 +84,7 @@ namespace apiNet.Controllers
         [HttpPost]
         public async Task<ActionResult<SolicitudesHogwarts>> PostSolicitudesHogwarts(SolicitudesHogwarts solicitudesHogwarts)
         {
-            if (NombreCorrectoCasa( solicitudesHogwarts.CasaHogwarts) )
+            if (NombreCorrectoCasa(solicitudesHogwarts.CasaHogwarts))
             {
                 _context.SolicitudesHogwarts.Add(solicitudesHogwarts);
                 await _context.SaveChangesAsync();
@@ -97,8 +97,8 @@ namespace apiNet.Controllers
             }
         }
 
-        // DELETE: api/SolicitudesHogwarts/5
-        [HttpDelete("{id}")]
+            // DELETE: api/SolicitudesHogwarts/5
+            [HttpDelete("{id}")]
         public async Task<ActionResult<SolicitudesHogwarts>> DeleteSolicitudesHogwarts(long id)
         {
             var solicitudesHogwarts = await _context.SolicitudesHogwarts.FindAsync(id);
@@ -113,9 +113,9 @@ namespace apiNet.Controllers
             return solicitudesHogwarts;
         }
 
-        private bool SolicitudesHogwartsExists(int id)
+        private bool SolicitudesHogwartsExists(long id)
         {
-            return _context.SolicitudesHogwarts.Any(e => e.Identificación == id);
+            return _context.SolicitudesHogwarts.Any(e => e.IdSolicitud == id);
         }
         public bool NombreCorrectoCasa(string casa)
         {
@@ -128,7 +128,7 @@ namespace apiNet.Controllers
             {
                 return false;
             }
-               
+
         }
     }
 }
